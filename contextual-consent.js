@@ -3,7 +3,14 @@ function removeOverlays() {
         overlay.remove();
     });
 }
-document.addEventListener("DOMContentLoaded", function () {
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initYoutubeBlocking);
+} else {
+    initYoutubeBlocking();
+}
+
+function initYoutubeBlocking() {
     const hasMarketingConsent = typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes(',4,');
     if (hasMarketingConsent) {
         removeOverlays();
@@ -32,17 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Button-Handler
             overlay.querySelector("button").addEventListener("click", function () {
-
                 OneTrust.UpdateConsent("Category", "4:1")
-
                 document.querySelectorAll("iframe.optanon-category-4[data-src]").forEach(function (iframe) {
                     iframe.src = iframe.dataset.src;
                 });
                 removeOverlays();
-
             });
         }
     });
-});
+}
 
 
