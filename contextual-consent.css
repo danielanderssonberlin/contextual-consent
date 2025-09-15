@@ -1,0 +1,49 @@
+.cookie-overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.cookie-overlay button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #ff4b2b;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cookie-iframe-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    /* 16:9 Ratio */
+}
+
+.cookie-iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cookie-iframe-wrapper .cookie-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
