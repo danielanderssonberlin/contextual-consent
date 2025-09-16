@@ -15,7 +15,7 @@ function initMap() {
     if (!container) return;
 
     // Overlay entfernen, wenn Map geladen
-    const overlay = document.querySelector('#map-container .map-overlay');
+    const overlay = document.querySelector('#map-container .cookie-overlay');
     if (overlay) overlay.remove();
 
     // Beispiel: Map initialisieren
@@ -36,9 +36,9 @@ function checkConsentAndLoadMap() {
         loadGoogleMaps();
     } else {
         // Overlay erzeugen, falls noch nicht vorhanden
-        if (!container.querySelector('.map-overlay')) {
+        if (!container.querySelector('.cookie-overlay')) {
             const overlay = document.createElement('div');
-            overlay.className = 'map-overlay';
+            overlay.className = 'cookie-overlay';
             overlay.innerHTML = `
                 <p>Diese Karte wird von Google Maps eingebunden und verwendet Marketing-Cookies, um personalisierte Inhalte und Werbung anzuzeigen.<br>
                 Bitte akzeptieren Sie Marketing-Cookies, um die Karte direkt auf dieser Seite ansehen zu können.</p>
