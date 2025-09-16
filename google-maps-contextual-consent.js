@@ -1,7 +1,7 @@
 function loadGoogleMaps() {
     if (document.getElementById('map-container').dataset.loaded) return; // Doppel-Laden verhindern
     const script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCbyah7XOnvWoBLi8oi6qv6o8u3p2aogic&callback=initMap";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap";
     script.async = true;
     document.body.appendChild(script);
     document.getElementById('map-container').dataset.loaded = true;
