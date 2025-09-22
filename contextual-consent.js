@@ -6,6 +6,7 @@ function removeOverlays() {
 if (typeof OnetrustActiveGroups === "undefined" || !OnetrustActiveGroups.includes(",4,")) {
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initYoutubeBlocking);
+        document.addEventListener("DOMContentLoaded", initWishpondBlocking);
     } else {
         initYoutubeBlocking();
         initWishpondBlocking();
