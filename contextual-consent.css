@@ -55,6 +55,6 @@
     display: none;
 }
 
-.cookie-iframe-wrapper iframe.optanon-category-4 + .cookie-overlay {
-    display: none;
-}
+.cookie-iframe-wrapper iframe.optanon-category-4[src] + .cookie-overlay {
+  display: none;
+}   
