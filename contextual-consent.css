@@ -50,3 +50,11 @@
     right: 0;
     bottom: 0;
 }
+
+.wishpond-campaign.wishpond-ready + .cookie-overlay {
+    display: none;
+}
+
+.cookie-iframe-wrapper iframe.optanon-category-4 + .cookie-overlay {
+    display: none;
+}
