@@ -8,7 +8,32 @@ if (typeof OnetrustActiveGroups === "undefined" || !OnetrustActiveGroups.include
         document.addEventListener("DOMContentLoaded", initYoutubeBlocking);
     } else {
         initYoutubeBlocking();
+        initWishpondBlocking();
     }
+}
+function initWishpondBlocking() {
+    document.querySelectorAll("div.wishpond-campaign").forEach(function(el) {
+        // Wrapper erstellen, um Overlay darüber zu legen
+        var wrapper = document.createElement("div");
+        wrapper.className = "cookie-iframe-wrapper";
+        el.parentNode.insertBefore(wrapper, el);
+        wrapper.appendChild(el);
+
+        // Overlay
+        var overlay = document.createElement("div");
+        overlay.className = "cookie-overlay";
+        overlay.innerHTML = `
+            <p>Um dieses Formular anzuzeigen, müssen Sie Marketing-Cookies zustimmen.</p>
+            <button type="button">Marketing-Cookies akzeptieren</button>
+        `;
+        wrapper.appendChild(overlay);
+
+        overlay.querySelector("button").addEventListener("click", function() {
+            OneTrust.UpdateConsent("Category", "4:1");
+            removeOverlays();
+            location.reload(); // neu laden, damit Wishpond nachlädt
+        });
+    });
 }
 function initYoutubeBlocking() {
     // Abbrechen, wenn Consent vorhanden
