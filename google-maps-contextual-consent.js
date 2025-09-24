@@ -1,15 +1,3 @@
-function loadGoogleMaps() {
-    const container = document.getElementById('map-container');
-    if (!container || container.dataset.loaded) return; // Doppel-Laden verhindern
-
-    const script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap";
-    script.async = true;
-    document.body.appendChild(script);
-
-    container.dataset.loaded = "true";
-}
-
 function initMap() {
     const container = document.getElementById('map-container');
     if (!container) return;
@@ -17,12 +5,6 @@ function initMap() {
     // Overlay entfernen, wenn Map geladen
     const overlay = document.querySelector('#map-container .cookie-overlay');
     if (overlay) overlay.remove();
-
-    // Beispiel: Map initialisieren
-    new google.maps.Map(container, {
-        center: { lat: 48.2082, lng: 16.3738 }, // Wien
-        zoom: 12
-    });
 }
 
 // Contextual Consent Check
@@ -33,7 +15,7 @@ function checkConsentAndLoadMap() {
     const hasConsent = typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes(",4,");
 
     if (hasConsent) {
-        loadGoogleMaps();
+        return;
     } else {
         // Overlay erzeugen, falls noch nicht vorhanden
         if (!container.querySelector('.cookie-overlay')) {
@@ -49,7 +31,6 @@ function checkConsentAndLoadMap() {
             // Button-Handler
             overlay.querySelector('button').addEventListener('click', () => {
                 OneTrust.UpdateConsent("Category", "4:1");
-                loadGoogleMaps();
                 overlay.remove();
             });
         }
@@ -59,7 +40,6 @@ function checkConsentAndLoadMap() {
 // Init nach DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
     checkConsentAndLoadMap();
-
     // Consent nachträglich akzeptiert → Map laden
     window.addEventListener('OneTrustGroupsUpdated', checkConsentAndLoadMap);
 });
